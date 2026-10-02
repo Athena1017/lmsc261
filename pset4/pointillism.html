@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<body>
+    <canvas width="600" height="600" id="canvas" style="width: 600px; height: 600px;"></canvas>
+</body>
+
+<script>
+    const canvas = document.getElementById("canvas");
+    const ctx = canvas.getContext("2d");
+    const w = canvas.width, h = canvas.height;
+
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width *= dpr, canvas.height *= dpr;
+    ctx.scale(dpr, dpr);
+
+    ctx.fillStyle = "#DCECE9";
+    ctx.fillRect(0, 0, w, h);
+
+for (let i = 0; i < 256; i++) {
+  let xPos = Math.random() * w;
+  let yPos = Math.random() * h;
+  let radius = Math.random() * 20;
+
+    ctx.beginPath();
+    ctx.arc(
+	    xPos, 
+	    yPos, 
+	    radius, 
+	    0, 
+	    Math.PI * 2, 
+	    false 
+);
+ if (yPos < h / 2) {
+    ctx.fillStyle = "#EF998D";
+  } else {
+    ctx.fillStyle = "#F0AA75";
+  }
+
+  ctx.fill();
+}
+
+</script>

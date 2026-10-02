@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<body>
+    <canvas width="600" height="600" id="canvas" style="width: 600px; height: 600px;"></canvas>
+</body>
+
+<script>
+    const canvas = document.getElementById("canvas");
+    const ctx = canvas.getContext("2d");
+    const w = canvas.width, h = canvas.height;
+
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width *= dpr, canvas.height *= dpr;
+    ctx.scale(dpr, dpr);
+
+    ctx.fillStyle = "#DCECE9";
+    ctx.fillRect(0, 0, w, h);
+
+    ctx.beginPath();
+    ctx.arc(
+	    120, 
+	    120, 
+	    100, 
+	    0, 
+	    Math.PI * 2, 
+	    false 
+);
+ctx.strokeStyle = "#82B2C0";
+ctx.lineWidth = 3;
+ctx.stroke();
+
+</script>
