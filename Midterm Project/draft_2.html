@@ -23,7 +23,7 @@ ctx.fillRect(0, h / 2, w, h / 2);
 const cx = w / 2, cy = h / 2;
 const centerRadius = w * 0.2;
 
-
+function drawCandy() {
 // draw stick
 ctx.beginPath();
 ctx.rect(cx - 10,
@@ -79,7 +79,62 @@ ctx.lineWidth = 5;
 ctx.stroke();
 ctx.lineclip = "round";
 }
+}
+
+let duckX = 100;       
+let direction = 1; // 1 for right, -1 for left
+const speed = 2;   // speed of the duck's movement
+const leftEdge = 60, rightEdge = 540;
 
 
+function drawDuck(duckX) {
+  const duckY = 470;
+
+  // draw duck body
+  ctx.beginPath();
+  ctx.arc(duckX, duckY, 40, 0, Math.PI * 2); 
+  ctx.fillStyle = "#FFD93B";
+  ctx.fill();
+
+  // draw duck head
+  ctx.beginPath();
+  ctx.arc(duckX + 30 * direction, duckY - 35, 22, 0, Math.PI * 2); 
+  ctx.fillStyle = "#FFD93B";
+  ctx.fill();
+
+  // draw duck mouth
+  ctx.beginPath();
+  ctx.arc(duckX + 48 * direction, duckY - 35, 8, 0, Math.PI * 2);
+  ctx.fillStyle = "#FF8C1A";  
+  ctx.fill();
+
+  // draw duck eye
+  ctx.beginPath();
+  ctx.arc(duckX + 36 * direction, duckY - 40, 4, 0, Math.PI * 2); 
+  ctx.fillStyle = "black";
+  ctx.fill();
+}
+
+function animate() {
+  for (let i = 0; i < speed; i++) {
+    duckX += direction;
+    if (duckX >= rightEdge || duckX <= leftEdge) {
+      direction = -direction;
+    }
+  }
+
+    // clear canvas and redraw background, candy, and duck
+    ctx.clearRect(0, 0, w, h);
+    ctx.fillStyle = "lightblue";
+    ctx.fillRect(0, 0, w, h / 2);
+    ctx.fillStyle = "lightgreen";
+    ctx.fillRect(0, h / 2, w, h / 2);
+  drawCandy();
+  drawDuck(duckX);
+
+  requestAnimationFrame(animate);
+}
+
+animate();
 
 </script>
